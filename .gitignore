@@ -1,0 +1,39 @@
+# deps
+node_modules/
+.pnp
+.pnp.js
+
+# foundry
+contracts/lib/
+contracts/out/
+contracts/cache/
+# forge script output — regenerate with `make -C contracts dry-run`, never commit
+contracts/broadcast/
+
+# next.js
+web/.next/
+web/out/
+web/build/
+web/next-env.d.ts
+
+# env — blanket, because the Safe deploy is driven from the repo root and an
+# ad-hoc .env.testnet / .env.deploy would otherwise be committable. Templates
+# are the one exception (web/.gitignore repeats it for web/.env.example).
+.env*
+!.env.example
+
+# key material — scripts/ and tools/ drive the 2-of-2 Safe deploy from the repo
+# root, so the key patterns have to live here too, not just in web/.gitignore.
+*.pem
+*.key
+keystore/
+
+# agent/skill scaffolding — not part of the app
+.agents/
+.claude/
+skills-lock.json
+
+# misc
+.DS_Store
+*.log
+.vercel

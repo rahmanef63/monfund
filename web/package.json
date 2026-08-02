@@ -1,0 +1,62 @@
+{
+  "name": "monfund-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Next.js dapp for MonFund — browse, fund and create all-or-nothing crowdfunding campaigns in native MON on Monad testnet.",
+  "keywords": [
+    "monad",
+    "monad-testnet",
+    "crowdfunding",
+    "dapp",
+    "ethereum",
+    "wagmi",
+    "viem",
+    "nextjs"
+  ],
+  "license": "MIT",
+  "author": "rahmanef63 (https://github.com/rahmanef63)",
+  "homepage": "https://github.com/rahmanef63/monfund#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahmanef63/monfund.git",
+    "directory": "web"
+  },
+  "bugs": "https://github.com/rahmanef63/monfund/issues",
+  "engines": {
+    "node": ">=20.9.0 <23"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint && cd .. && eslint scripts tools",
+    "gen:abi": "node ../scripts/gen-abis.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@getpara/evm-wallet-connectors": "^3.11.0",
+    "@getpara/react-sdk": "npm:@getpara/react-sdk-lite@^3.11.0",
+    "@tanstack/react-query": "^5.101.4",
+    "next": "16.2.12",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "viem": "^2.55.10",
+    "wagmi": "^3.7.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.12",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "overrides": {
+    "postcss": "^8.5.18",
+    "sharp": "^0.35.0",
+    "number-to-bn": { "bn.js": "^4.12.5" },
+    "ethjs-unit": { "bn.js": "^4.12.5" }
+  }
+}

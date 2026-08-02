@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# MonFund pre-push gate. Nothing else in this repo runs a check, so this is the
+# only thing standing between a green local editor and a broken main.
+#
+# Enable once per clone (hooks are not cloned by git):
+#
+#   git config core.hooksPath .githooks
+#
+# Bypass for a genuine emergency with `git push --no-verify`.
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+cd "$repo_root"
+
+if ! command -v forge >/dev/null 2>&1; then
+  echo "pre-push: forge not on PATH — install Foundry (https://getfoundry.sh) or push with --no-verify" >&2
+  exit 1
+fi
+
+if [ ! -d contracts/lib/forge-std ]; then
+  echo "pre-push: contracts/lib is empty — run 'make -C contracts install' first" >&2
+  exit 1
+fi
+
+echo "pre-push: forge test"
+forge test --root contracts
+
+# Only meaningful once deps are installed; a clean clone that has never run
+# `npm install` would otherwise fail the push for the wrong reason.
+if [ -d web/node_modules ]; then
+  echo "pre-push: npm run typecheck"
+  npm --prefix web run typecheck
+  # `lint` also covers scripts/ and tools/ via the repo-root eslint.config.mjs —
+  # tsc never looks at those, so this is the only gate on the Node tooling.
+  echo "pre-push: npm run lint"
+  npm --prefix web run lint
+else
+  echo "pre-push: web/node_modules absent — skipping typecheck/lint (run 'npm --prefix web ci')" >&2
+fi
+
+echo "pre-push: OK"

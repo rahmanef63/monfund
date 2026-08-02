@@ -1,0 +1,44 @@
+{
+  "testnet": {
+    "chainId": 10143,
+    "safe": "<SAFE_ADDRESS>",
+    "owners": [
+      "<SAFE_OWNER_1>",
+      "<SAFE_OWNER_2>"
+    ],
+    "threshold": 2,
+    "version": "1.4.1",
+    "deploymentTx": "<TX_SAFE_DEPLOY>",
+    "url": "https://app.safe.global/home?safe=monad-testnet:<SAFE_ADDRESS>",
+    "deployments": {
+      "CampaignFactory": {
+        "address": "<FACTORY_ADDRESS>",
+        "safeTxHash": "<SAFE_TX_HASH_0>",
+        "txHash": "<TX_FACTORY_DEPLOY>",
+        "verified": [
+          "monadvision",
+          "monadscan"
+        ],
+        "explorer": "https://testnet.monadvision.com/address/<FACTORY_ADDRESS>"
+      },
+      "Campaign": {
+        "address": "<CAMPAIGN_ADDRESS>",
+        "note": "first campaign instance, created through the Safe; used to verify the Campaign source",
+        "safeTxHash": "<SAFE_TX_HASH_1>",
+        "txHash": "<TX_CREATE_CAMPAIGN>",
+        "constructorArgs": {
+          "creator": "<SAFE_ADDRESS>",
+          "goal": "50000000000000000",
+          "deadline": 1786173972,
+          "description": "MonFund demo - community garden on Monad testnet"
+        },
+        "verified": [
+          "monadvision",
+          "monadscan"
+        ],
+        "explorer": "https://testnet.monadvision.com/address/<CAMPAIGN_ADDRESS>"
+      }
+    }
+  },
+  "mainnet": null
+}
